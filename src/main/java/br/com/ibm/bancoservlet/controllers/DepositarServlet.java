@@ -1,4 +1,4 @@
-package br.com.ibm.bancoservlet;
+package br.com.ibm.bancoservlet.controllers;
 
 import br.com.ibm.bancoservlet.models.*;
 import jakarta.servlet.ServletContext;
@@ -12,7 +12,7 @@ import java.util.List;
 @WebServlet("/depositar")
 public class DepositarServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String numeroConta = req.getParameter("numeroConta");
         double valorDeposito = Double.parseDouble(req.getParameter("valorDeposito"));
 
@@ -32,7 +32,7 @@ public class DepositarServlet extends HttpServlet {
         if (contaDeposito != null) {
             double novoSaldo = contaDeposito.getSaldo() + valorDeposito;
             contaDeposito.setSaldo(novoSaldo);
-            resp.sendRedirect("sucesso.jsp");
+            resp.sendRedirect("clientes.jsp");
         } else {
             resp.sendRedirect("erro.jsp"); //
         }

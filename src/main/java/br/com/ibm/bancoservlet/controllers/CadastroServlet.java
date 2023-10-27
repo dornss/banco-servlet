@@ -1,10 +1,11 @@
-package br.com.ibm.bancoservlet;
+package br.com.ibm.bancoservlet.controllers;
 
 import java.io.*;
 import java.util.List;
 import java.util.ArrayList;
 
 import br.com.ibm.bancoservlet.models.*;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
@@ -37,7 +38,7 @@ public class CadastroServlet extends HttpServlet {
 
         ContaCorrente contaCorrente = new ContaCorrente(String.valueOf(numeroConta), 0.0, cliente);
 
-        List<ContaCorrente> contasCorrentes = (List<ContaCorrente>) servletContext.getAttribute("contasCorrentes");
+        List<ContaCorrente> contasCorrentes = (List<ContaCorrente>)servletContext.getAttribute("contasCorrentes");
 
         if (contasCorrentes == null) {
             contasCorrentes = new ArrayList<>();
@@ -46,6 +47,7 @@ public class CadastroServlet extends HttpServlet {
         contasCorrentes.add(contaCorrente);
         servletContext.setAttribute("contasCorrentes", contasCorrentes);
 
-        resp.sendRedirect("sucesso.jsp");
+        RequestDispatcher rq = req.getRequestDispatcher("sucesso.jsp");
+        rq.forward(req,resp);
     }
 }

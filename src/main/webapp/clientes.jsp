@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +18,6 @@
             <th scope="col">Saldo</th>
             <th scope="col">Titular</th>
             <th scope="col">Operações</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -36,8 +34,8 @@
                 </td>
                 <td>
                     <form action="saque.jsp" method="post">
-                        <input type="hidden" name="saldo" value="${conta.saldo}">
-                        <button class="btn btn-success btn-sm" type="submit">Depositar</button>
+                        <input type="hidden" name="numeroConta" value="${conta.numeroConta}">
+                        <button class="btn btn-success btn-sm" type="submit">Sacar</button>
                     </form>
                 </td>
             </tr>
