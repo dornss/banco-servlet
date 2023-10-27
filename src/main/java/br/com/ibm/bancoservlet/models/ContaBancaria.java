@@ -2,10 +2,7 @@ package br.com.ibm.bancoservlet.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import javax.annotation.processing.Generated;
 
 @Data
 @AllArgsConstructor
