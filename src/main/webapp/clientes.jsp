@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +36,7 @@
         <c:forEach var="conta" items="${contasCorrentes}">
             <tr>
                 <td>${conta.numeroDaConta}</td>
-                <td>R$${conta.saldo}</td>
+                <td><fmt:formatNumber value="${conta.saldo}" type="currency" currencyCode="BRL" maxFractionDigits="2" /></td>
                 <td>${conta.titular.nome}</td>
             </tr>
         </c:forEach>

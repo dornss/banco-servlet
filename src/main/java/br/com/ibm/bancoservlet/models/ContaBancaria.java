@@ -17,7 +17,6 @@ public class ContaBancaria {
         if (valor <= 0) {
             throw new IllegalArgumentException("Valor de saque inválido.");
         }
-
         if (saldo >= valor) {
             saldo -= valor;
         } else {
