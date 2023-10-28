@@ -1,5 +1,6 @@
 package br.com.ibm.bancoservlet.models;
 
+import br.com.ibm.bancoservlet.GlobalExceptionHandler.SaldoInsuficienteException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
