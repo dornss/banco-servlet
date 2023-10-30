@@ -13,14 +13,17 @@
 <div class="container mt-5">
     <h1 class="mb-4">Administrador Banco IBM</h1>
     <div class="mb-3">
-        <form action="saque.jsp" method="post" class="d-inline-block mr-2">
+        <form action="cadastro.jsp" method="post" class="d-inline-block">
+            <button class="btn btn-primary" type="submit">Cadastrar</button>
+        </form>
+        <form action="saque.jsp" method="post" class="d-inline-block">
             <button class="btn btn-success" type="submit">Sacar</button>
         </form>
         <form action="deposito.jsp" method="post" class="d-inline-block">
             <button class="btn btn-success" type="submit">Depositar</button>
         </form>
-        <form action="cadastro.jsp" method="post" class="d-inline-block">
-            <button class="btn btn-dark" type="submit">Cadastrar</button>
+        <form action="transferir.jsp" method="post" class="d-inline-block">
+            <button class="btn btn-info" type="submit">Transferir</button>
         </form>
     </div>
     <h1 class="mb-4">Contas correntes</h1>

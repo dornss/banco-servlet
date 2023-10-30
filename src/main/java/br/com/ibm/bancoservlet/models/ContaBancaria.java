@@ -34,13 +34,10 @@ public class ContaBancaria {
             if (origem.getSaldo() < valor) {
                 throw new SaldoInsuficienteException("Saldo insuficiente para realizar a transferência.");
             }
-            origem.sacar(valor);
-            destino.depositar(valor);
-            System.out.printf("Transferência de: R$ %.2f da conta %s para a conta %s realizada com sucesso.\n"
-                    , valor, origem.getNumeroConta(), destino.getNumeroConta());
+            origem.setSaldo(origem.getSaldo() - valor);
+            destino.setSaldo(destino.getSaldo() + valor);
         } catch (SaldoInsuficienteException e) {
             System.out.println(e.getMessage());
         }
     }
-
 }
