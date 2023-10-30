@@ -12,7 +12,6 @@
 <body>
 <div class="container mt-5">
     <h1 class="mb-4">Administrador Banco IBM</h1>
-    <!-- Botões de sacar e depositar -->
     <div class="mb-3">
         <form action="saque.jsp" method="post" class="d-inline-block mr-2">
             <button class="btn btn-success" type="submit">Sacar</button>

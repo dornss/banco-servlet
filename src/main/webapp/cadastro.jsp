@@ -25,7 +25,6 @@
   </form>
 </div>
 
-<!-- Inclua os scripts do Bootstrap no final do arquivo para melhorar o desempenho da página -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
