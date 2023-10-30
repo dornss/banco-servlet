@@ -12,7 +12,6 @@
 <body>
 <div class="container mt-5">
     <h1 class="mb-4">Administrador Banco IBM</h1>
-    <!-- Botões de sacar e depositar -->
     <div class="mb-3">
         <form action="saque.jsp" method="post" class="d-inline-block mr-2">
             <button class="btn btn-success" type="submit">Sacar</button>
@@ -20,10 +19,11 @@
         <form action="deposito.jsp" method="post" class="d-inline-block">
             <button class="btn btn-success" type="submit">Depositar</button>
         </form>
+        <form action="cadastro.jsp" method="post" class="d-inline-block">
+            <button class="btn btn-dark" type="submit">Cadastrar</button>
+        </form>
     </div>
     <h1 class="mb-4">Contas correntes</h1>
-
-    <!-- Tabela de contas correntes -->
     <table class="table">
         <thead class="thead-dark">
         <tr>
@@ -35,7 +35,7 @@
         <tbody>
         <c:forEach var="conta" items="${contasCorrentes}">
             <tr>
-                <td>${conta.numeroDaConta}</td>
+                <td>${conta.numeroConta}</td>
                 <td><fmt:formatNumber value="${conta.saldo}" type="currency" currencyCode="BRL" maxFractionDigits="2" /></td>
                 <td>${conta.titular.nome}</td>
             </tr>

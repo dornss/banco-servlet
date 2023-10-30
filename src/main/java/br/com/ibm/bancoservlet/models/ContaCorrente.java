@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class ContaCorrente extends ContaBancaria {
-    private static final double TAXA_MANUTENCAO_CC = 0.01;
+    private static final double TAXA_MANUTENCAO_CC = 0.001;
     private final double taxaManutencao;
 
     public ContaCorrente(String numeroConta, double saldo, Cliente titular) {

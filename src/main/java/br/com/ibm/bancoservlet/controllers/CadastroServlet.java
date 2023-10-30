@@ -1,53 +1,52 @@
 package br.com.ibm.bancoservlet.controllers;
 
-import java.io.*;
-import java.util.List;
-import java.util.ArrayList;
-
-import br.com.ibm.bancoservlet.models.*;
+import br.com.ibm.bancoservlet.GlobalExceptionHandler.ContaInvalidaException;
+import br.com.ibm.bancoservlet.models.ContaCorrente;
+import br.com.ibm.bancoservlet.services.ContaCorrenteService;
+import br.com.ibm.bancoservlet.services.ContaCorrenteServiceImpl;
 import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-@WebServlet("/cadastrar")
+@WebServlet(urlPatterns = {"/cadastrar"})
 public class CadastroServlet extends HttpServlet {
-    private final List<Cliente> clientes = new ArrayList<>();
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        List<ContaCorrente> contasCorrentes = new ArrayList<>();
+        getServletContext().setAttribute("contasCorrentes", contasCorrentes);
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String nome = req.getParameter("nome");
-        String cpf  = req.getParameter("cpf");
-        ServletContext servletContext = getServletContext();
+        String cpf = req.getParameter("cpf");
 
-        Integer contadorContas = (Integer) servletContext.getAttribute("contadorContas");
-
-        if (contadorContas == null) {
-            contadorContas = 1;
-            servletContext.setAttribute("contadorContas", contadorContas);
-        } else {
-            contadorContas++;
-            servletContext.setAttribute("contadorContas", contadorContas);
+        if (nome == null || cpf == null || nome.isEmpty() || cpf.isEmpty()) {
+            req.setAttribute("mensagemErro", "Nome e CPF são obrigatórios.");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("erro.jsp");
+            dispatcher.forward(req, resp);
+            return;
         }
 
-        String numeroConta = String.format("%05d", contadorContas);
+        List<ContaCorrente> contasCorrentes = (List<ContaCorrente>) getServletContext().getAttribute("contasCorrentes");
 
-        Cliente cliente = new Cliente(nome, cpf);
-        clientes.add(cliente);
-
-        ContaCorrente contaCorrente = new ContaCorrente(String.valueOf(numeroConta), 0.0, cliente);
-
-        List<ContaCorrente> contasCorrentes = (List<ContaCorrente>)servletContext.getAttribute("contasCorrentes");
-
-        if (contasCorrentes == null) {
-            contasCorrentes = new ArrayList<>();
+        try {
+            ContaCorrenteService contaService = new ContaCorrenteServiceImpl(contasCorrentes);
+            ContaCorrente contaCorrente = contaService.criarConta(nome, cpf);
+            contasCorrentes.add(contaCorrente);
+            req.setAttribute("contaCorrente", contaCorrente);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("sucesso.jsp");
+            dispatcher.forward(req, resp);
+        } catch (ContaInvalidaException e) {
+            req.setAttribute("mensagemErro", e.getMessage());
+            RequestDispatcher dispatcher = req.getRequestDispatcher("erro.jsp");
+            dispatcher.forward(req, resp);
         }
-
-        contasCorrentes.add(contaCorrente);
-        servletContext.setAttribute("contasCorrentes", contasCorrentes);
-
-        RequestDispatcher rq = req.getRequestDispatcher("sucesso.jsp");
-        rq.forward(req,resp);
     }
 }
