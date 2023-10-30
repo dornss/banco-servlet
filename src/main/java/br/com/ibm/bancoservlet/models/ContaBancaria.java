@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ContaBancaria {
-    private String numeroDaConta;
+    private String numeroConta;
     private Double saldo;
     private Cliente titular;
 
@@ -26,7 +26,7 @@ public class ContaBancaria {
 
     public void depositar(double valor) {
         this.saldo += valor;
-        System.out.printf("Valor de %.2f depositado na conta de número %s \n", valor, this.numeroDaConta);
+        System.out.printf("Valor de %.2f depositado na conta de número %s \n", valor, this.numeroConta);
     }
 
     public void transferir(ContaBancaria origem, ContaBancaria destino, double valor) {
@@ -37,7 +37,7 @@ public class ContaBancaria {
             origem.sacar(valor);
             destino.depositar(valor);
             System.out.printf("Transferência de: R$ %.2f da conta %s para a conta %s realizada com sucesso.\n"
-                    , valor, origem.getNumeroDaConta(), destino.getNumeroDaConta());
+                    , valor, origem.getNumeroConta(), destino.getNumeroConta());
         } catch (SaldoInsuficienteException e) {
             System.out.println(e.getMessage());
         }

@@ -1,10 +1,5 @@
 package br.com.ibm.bancoservlet.controllers;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-
-
 import br.com.ibm.bancoservlet.GlobalExceptionHandler.ContaInvalidaException;
 import br.com.ibm.bancoservlet.models.ContaCorrente;
 import br.com.ibm.bancoservlet.services.ContaCorrenteService;
@@ -13,6 +8,9 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(urlPatterns = {"/cadastrar"})
 public class CadastroServlet extends HttpServlet {
@@ -42,7 +40,9 @@ public class CadastroServlet extends HttpServlet {
             ContaCorrenteService contaService = new ContaCorrenteServiceImpl(contasCorrentes);
             ContaCorrente contaCorrente = contaService.criarConta(nome, cpf);
             contasCorrentes.add(contaCorrente);
-            resp.getWriter().println("Cadastro realizado com sucesso");
+            req.setAttribute("contaCorrente", contaCorrente);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("sucesso.jsp");
+            dispatcher.forward(req, resp);
         } catch (ContaInvalidaException e) {
             req.setAttribute("mensagemErro", e.getMessage());
             RequestDispatcher dispatcher = req.getRequestDispatcher("erro.jsp");
