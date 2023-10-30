@@ -4,6 +4,7 @@
 Certifique-se de ter o Apache Maven e o TomCat instalado no seu computador.
 Para executar o servidor, basta iniciar o servidor Tomcat com o comando
 ### Endpoints acessáveis
+- Endpoint inicial (localhost:8080/)
 - /cadastro.jsp
 - /clientes.jsp
 - /deposito.jsp
