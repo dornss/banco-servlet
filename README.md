@@ -6,13 +6,13 @@ Para executar a aplicação, basta iniciá-la no servidor Tomcat (porta 8080 pad
 ### Endpoints acessáveis
 - Endpoint inicial (localhost:8080/)
 - /cadastro.jsp
-- /clientes.jsp
 - /deposito.jsp
 - /saque.jsp
 - /transferir.jsp
 ### Tecnologias Utilizadas 💻
 - HTML 5
 - CSS 3
+- Bootstrap
 - Java EE
 ### Dependencias 🧰
 - Lombok, JSTL, Tomcat, JUnit
