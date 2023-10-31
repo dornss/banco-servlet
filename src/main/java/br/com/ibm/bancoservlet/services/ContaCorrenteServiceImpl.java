@@ -19,7 +19,7 @@ public class ContaCorrenteServiceImpl implements ContaCorrenteService {
         this.contasCorrentes = contasCorrentes;
     }
 
-    //Implementação a API Stream!
+    //Implementação da API Stream!
     @Override
     public ContaCorrente getContaPorNumero(String numeroConta) {
         return contasCorrentes.stream()
@@ -64,7 +64,6 @@ public class ContaCorrenteServiceImpl implements ContaCorrenteService {
             throw new SaldoInsuficienteException("Saldo insuficiente para realizar a transferência.");
         }
     }
-
 
     @Override
     public ContaCorrente criarConta(String nome, String cpf) throws ContaInvalidaException {

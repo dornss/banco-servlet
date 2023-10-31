@@ -40,8 +40,12 @@ public class TransferirServlet extends HttpServlet{
             dispatcher.forward(req, resp);
         } catch (NumberFormatException e) {
             req.setAttribute("mensagemErro", "Valor de transferência inválido.");
+            RequestDispatcher rq = req.getRequestDispatcher("erro.jsp");
+            rq.forward(req, resp);
         } catch (ContaInvalidaException | SaldoInsuficienteException e) {
             req.setAttribute("mensagemErro", e.getMessage());
+            RequestDispatcher rq = req.getRequestDispatcher("erro.jsp");
+            rq.forward(req, resp);
         }
     }
 }
